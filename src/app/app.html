@@ -1,16 +1,3 @@
-@for (item of products; track item.id) {
-<div>
-  <p>{{item.id}}</p>
-  <p>{{item.name}}</p>
-  <p>{{item.description}}</p>
-  <p>{{item.price}}</p>
-  <p>{{item.discount}}</p>
-  <p>{{item.rate}}</p>
-  <p>{{item.quantity}}</p>
-  <p>{{item.categoryId}}</p>
-
-  <img [src]="item.mainImg" style="width: 20%;">
-
-  <hr>
-</div>
-}
+<app-navbar></app-navbar>
+<app-product></app-product>
+<app-footer></app-footer>
