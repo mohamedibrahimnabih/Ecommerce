@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ProductResponse } from '../models/product';
 import { Category } from '../models/category';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './product.html',
   styleUrl: './product.css',
 })
@@ -14,6 +15,10 @@ export class Product {
   products: ProductResponse[];
 
   categoies: Category[];
+
+  totalPrice: number = 0;
+
+  selectedId: number = 0;
 
   constructor()
   {
@@ -26,9 +31,9 @@ export class Product {
         mainImg: 'assets/images/product_images/img1.png',
         status: true,
         price: 283,
-        discount: 5,
+        discount: 50,
         rate: 4.6,
-        quantity: 44,
+        quantity: 0,
         categoryId: 4
       },
       {
@@ -38,7 +43,7 @@ export class Product {
         mainImg: 'assets/images/product_images/img2.png',
         status: true,
         price: 290,
-        discount: 7,
+        discount: 51,
         rate: 4.7,
         quantity: 56,
         categoryId: 4
@@ -50,7 +55,7 @@ export class Product {
         mainImg: 'assets/images/product_images/img3.png',
         status: true,
         price: 295,
-        discount: 6,
+        discount: 40,
         rate: 4.6,
         quantity: 99,
         categoryId: 4
@@ -82,11 +87,13 @@ export class Product {
     return this.categoies.find(e=>e.id === categoryId)?.name;
   }
 
-  decreaseQuantiy(product: ProductResponse, quantity: number) {
+  decreaseQuantiyAndCalcTotalPrice(product: ProductResponse, quantity: number) {
     // const product = this.products.find(e=>e.id === productId);
 
     if(product != null && product.quantity - quantity > 0){
       product.quantity -= quantity;
+
+      this.totalPrice += product.price * quantity;
     }
 
   }
