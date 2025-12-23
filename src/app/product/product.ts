@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { ProductResponse } from '../models/product';
 import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-product',
-  imports: [FormsModule],
+  imports: [FormsModule, NgFor, NgIf],
   templateUrl: './product.html',
   styleUrl: './product.css',
 })
@@ -33,7 +34,7 @@ export class Product {
         price: 283,
         discount: 50,
         rate: 4.6,
-        quantity: 0,
+        quantity: 59,
         categoryId: 4
       },
       {
@@ -45,7 +46,7 @@ export class Product {
         price: 290,
         discount: 51,
         rate: 4.7,
-        quantity: 56,
+        quantity: 1,
         categoryId: 4
       },
       {
@@ -90,11 +91,15 @@ export class Product {
   decreaseQuantiyAndCalcTotalPrice(product: ProductResponse, quantity: number) {
     // const product = this.products.find(e=>e.id === productId);
 
-    if(product != null && product.quantity - quantity > 0){
+    if(product != null && product.quantity - quantity >= 0){
       product.quantity -= quantity;
 
       this.totalPrice += product.price * quantity;
     }
 
   }
+
+  trackByItems(index: number, item: ProductResponse): number {
+  return item.id;
+}
 }

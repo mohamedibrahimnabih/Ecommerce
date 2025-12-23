@@ -20,16 +20,16 @@
 
         <div class="tab-pane fade show active" id="kategori1-produk" role="tabpanel" aria-labelledby="kategori1-tab">
             <div class="row g-4">
-                @for (item of products; track item.id) {
+                <!-- @for (item of products; track item.id) { -->
                     <!-- @if(item.categoryId == selectedId) { -->
-                        <div class="col-md-6 col-lg-4" [class.d-none]="item.categoryId != selectedId">
+                        <div class="col-md-6 col-lg-4" *ngFor="let item of products;let i = index;trackBy:trackByItems" [class.d-none]="item.categoryId != selectedId">
                             <div class="card h-100">
                                 <img [src]="item.mainImg" class="card-img-top" alt="Produk 1">
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{item.name}}</h5>
+                                    <h5 class="card-title">{{i + 1}} -  {{item.name}}</h5>
                                     <p class="card-text">{{item.description}}</p>
                                     <p class="fw-bold text-primary">Price: {{item.price}}</p>
-                                    <p class="fw-bold text-primary">Discount: {{item.discount}}%</p>
+                                    <p class="fw-bold" [class.text-danger]="item.discount > 50">Discount: {{item.discount}}%</p>
                                     <p class="fw-bold" [style.color]="item.quantity == 0 ? 'red' : 'blue'">Quantity: {{item.quantity}}</p>
                                     <input type="number" class="form-control mb-3" placeholder="Quantity" min="1" #Quantity>
                                     <button class="btn btn-success mt-auto"
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     <!-- } -->
-                }
+                <!-- } -->
             </div>
         </div>
     </div>
