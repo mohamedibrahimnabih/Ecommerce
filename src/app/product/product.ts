@@ -81,4 +81,13 @@ export class Product {
   getCategoryName(categoryId:number) {
     return this.categoies.find(e=>e.id === categoryId)?.name;
   }
+
+  decreaseQuantiy(product: ProductResponse, quantity: number) {
+    // const product = this.products.find(e=>e.id === productId);
+
+    if(product != null && product.quantity - quantity > 0){
+      product.quantity -= quantity;
+    }
+
+  }
 }
