@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ProductResponse } from '../models/product';
 import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, NgClass, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-product',
-  imports: [FormsModule, NgFor, NgIf],
+  imports: [FormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, NgClass, NgStyle],
   templateUrl: './product.html',
   styleUrl: './product.css',
 })
@@ -34,7 +34,7 @@ export class Product {
         price: 283,
         discount: 50,
         rate: 4.6,
-        quantity: 59,
+        quantity: 0,
         categoryId: 4
       },
       {
