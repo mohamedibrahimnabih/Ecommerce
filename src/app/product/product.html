@@ -21,12 +21,12 @@
                 @for(item of products;track item.id;let i = $index) {
 
                 @if(item.categoryId == selectedId) {
-                <div class="col-md-6 col-lg-4" appHighlight="red">
+                <div class="col-md-6 col-lg-4" appBoxShadow="10px 10px 5px lightblue">
                     <div class="card h-100">
                         <img [src]="item.mainImg" class="card-img-top" alt="Produk 1">
                         <div class="card-body d-flex flex-column" [ngStyle]="{'background-color': '#DDD'}"
                             [style.background-color]="item.quantity == 0 ? '#DDD': ''">
-                            <h5 class="card-title">{{i + 1}} - {{item.name}}</h5>
+                            <h5 class="card-title">{{i + 1}} - {{item.name | capitalize }}</h5>
                             <p class="card-text">{{item.description}}</p>
                             <p class="fw-bold text-primary">Price: {{item.price | currency:'EUR':'code'}} </p>
                             <p class="fw-bold" [ngClass]="item.discount > 50 ? 'text-danger' : 'text-success'">Discount:

@@ -4,10 +4,12 @@ import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, NgClass, NgStyle } from '@angular/common';
 import { Highlight } from "../directives/highlight";
+import { BoxShadow } from '../directives/box-shadow';
+import { CapitalizePipe } from '../pipes/capitalize-pipe';
 
 @Component({
   selector: 'app-product',
-  imports: [FormsModule, NgClass, NgStyle, CommonModule, Highlight],
+  imports: [FormsModule, NgClass, NgStyle, CommonModule, Highlight, BoxShadow, CapitalizePipe],
   templateUrl: './product.html',
   styleUrl: './product.css',
 })
@@ -28,7 +30,7 @@ export class Product {
 
       {
         id: 1,
-        name: 'Iphone 11',
+        name: 'iphone 11',
         description: 'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.',
         mainImg: 'assets/images/product_images/img1.png',
         status: true,
