@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ProductResponse } from '../models/product';
 import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, NgClass, NgStyle } from '@angular/common';
+import { CommonModule, NgClass, NgStyle } from '@angular/common';
+import { Highlight } from "../directives/highlight";
 
 @Component({
   selector: 'app-product',
-  imports: [FormsModule, NgClass, NgStyle],
+  imports: [FormsModule, NgClass, NgStyle, CommonModule, Highlight],
   templateUrl: './product.html',
   styleUrl: './product.css',
 })

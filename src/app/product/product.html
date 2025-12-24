@@ -5,7 +5,7 @@
         <div class="mb-3">
             <select class="form-select form-select-lg" name="categoryId" [(ngModel)]="selectedId">
                 @for (item of categoies; track item.id) {
-                <option [value]="item.id">{{item.name}}</option>
+                <option [value]="item.id">{{item.name | uppercase}}</option>
                 }
             </select>
 
@@ -19,40 +19,52 @@
         <div class="tab-pane fade show active" id="kategori1-produk" role="tabpanel" aria-labelledby="kategori1-tab">
             <div class="row g-4">
                 @for(item of products;track item.id;let i = $index) {
-                    
-                    @if(item.categoryId == selectedId) {
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card h-100">
-                                <img [src]="item.mainImg" class="card-img-top" alt="Produk 1">
-                                <div class="card-body d-flex flex-column" [ngStyle]="{'background-color': '#DDD'}" [style.background-color]="item.quantity == 0 ? '#DDD': ''">
-                                    <h5 class="card-title">{{i + 1}} -  {{item.name}}</h5>
-                                    <p class="card-text">{{item.description}}</p>
-                                    <p class="fw-bold text-primary">Price: {{item.price}}</p>
-                                    <p class="fw-bold" [ngClass]="item.discount > 50 ? 'text-danger' : 'text-success'">Discount: {{item.discount}}%</p>
-                                    <!-- <p class="fw-bold" *ngIf="item.quantity > 1;else lastItem">Quantity: {{item.quantity}}</p>
+
+                @if(item.categoryId == selectedId) {
+                <div class="col-md-6 col-lg-4" appHighlight="red">
+                    <div class="card h-100">
+                        <img [src]="item.mainImg" class="card-img-top" alt="Produk 1">
+                        <div class="card-body d-flex flex-column" [ngStyle]="{'background-color': '#DDD'}"
+                            [style.background-color]="item.quantity == 0 ? '#DDD': ''">
+                            <h5 class="card-title">{{i + 1}} - {{item.name}}</h5>
+                            <p class="card-text">{{item.description}}</p>
+                            <p class="fw-bold text-primary">Price: {{item.price | currency:'EUR':'code'}} </p>
+                            <p class="fw-bold" [ngClass]="item.discount > 50 ? 'text-danger' : 'text-success'">Discount:
+                                {{item.discount}}%</p>
+                            <!-- <p class="fw-bold" *ngIf="item.quantity > 1;else lastItem">Quantity: {{item.quantity}}</p>
                                     <ng-template #lastItem>
                                         <p class="fw-bold" style="color: red;">Out of Stock</p>
                                     </ng-template> -->
 
-                                    <div class="fw-bold" [ngSwitch]="item.quantity">
-                                        <p *ngSwitchCase="0" class="text-danger">Out of Stock</p>
-                                        <p *ngSwitchCase="1" class="text-warning">Last Item</p>
-                                        <p *ngSwitchDefault>Quantity: {{item.quantity}}</p>
-                                    </div>
 
-                                    <input type="number" class="form-control mb-3" placeholder="Quantity" min="1" #Quantity>
-                                    <button class="btn btn-success mt-auto"
-                                        (click)="decreaseQuantiyAndCalcTotalPrice(item, Quantity.valueAsNumber)">Add To
-                                        Cart</button>
-                                </div>
+                            <div class="fw-bold">
+                                @switch(item.quantity) {
+                                    @case (0) {
+                                    <p class="fw-bold text-danger">Out of Stock</p>
+                                    }
+                                    @case (1) {
+                                    <p class="fw-bold text-warning">Last Item</p>
+                                    }
+                                    @default {
+                                    <p class="fw-bold">Quantity: {{item.quantity}}</p>
+                                    }
+                                    }
                             </div>
+
+
+                            <input type="number" class="form-control mb-3" placeholder="Quantity" min="1" #Quantity>
+                            <button class="btn btn-success mt-auto"
+                                (click)="decreaseQuantiyAndCalcTotalPrice(item, Quantity.valueAsNumber)">Add To
+                                Cart</button>
                         </div>
-                    }
-                    
+                    </div>
+                </div>
+                }
+
 
                 }
                 @empty {
-                    <p>No products available.</p>
+                <p>No products available.</p>
                 }
             </div>
         </div>
