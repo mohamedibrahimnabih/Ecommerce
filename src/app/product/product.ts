@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductResponse } from '../models/product';
 import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';
@@ -18,11 +18,10 @@ export class Product {
 
   products: ProductResponse[];
 
-  categoies: Category[];
+  @Output() clacTotalPrice = new EventEmitter<number>();
 
-  totalPrice: number = 0;
+  @Input() recivedSelectedId: number = 0;
 
-  selectedId: number = 0;
 
   constructor()
   {
@@ -67,29 +66,12 @@ export class Product {
 
     ];
 
-    this.categoies = [
-      {
-        id: 1,
-        name: 'Tablets'
-      },
-      {
-        id: 2,
-        name: 'PCs'
-      },
-      {
-        id: 3,
-        name: 'Computers'
-      },
-      {
-        id: 4,
-        name: 'Smart Phones'
-      }
-    ];
+    
   }
 
-  getCategoryName(categoryId:number) {
-    return this.categoies.find(e=>e.id === categoryId)?.name;
-  }
+  // getCategoryName(categoryId:number) {
+  //   return this.categoies.find(e=>e.id === categoryId)?.name;
+  // }
 
   decreaseQuantiyAndCalcTotalPrice(product: ProductResponse, quantity: number) {
     // const product = this.products.find(e=>e.id === productId);
@@ -97,7 +79,7 @@ export class Product {
     if(product != null && product.quantity - quantity >= 0){
       product.quantity -= quantity;
 
-      this.totalPrice += product.price * quantity;
+      this.clacTotalPrice.emit(product.price * quantity);
     }
 
   }

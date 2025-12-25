@@ -1,26 +1,11 @@
-<section class="container py-5 my-5" id="products">
     <h2 class="text-center mb-4">Our Product</h2>
 
-    <div class="d-flex justify-content-center mb-4">
-        <div class="mb-3">
-            <select class="form-select form-select-lg" name="categoryId" [(ngModel)]="selectedId">
-                @for (item of categoies; track item.id) {
-                <option [value]="item.id">{{item.name | uppercase}}</option>
-                }
-            </select>
-
-            <div>SelectedCategoryId : {{selectedId}}</div>
-        </div>
-    </div>
-
     <div class="tab-content" id="productTabContent">
-        <div class="display-6 mb-3">Total Price: {{totalPrice}}</div>
-
         <div class="tab-pane fade show active" id="kategori1-produk" role="tabpanel" aria-labelledby="kategori1-tab">
             <div class="row g-4">
                 @for(item of products;track item.id;let i = $index) {
 
-                @if(item.categoryId == selectedId) {
+                @if(item.categoryId == recivedSelectedId) {
                 <div class="col-md-6 col-lg-4" appBoxShadow="10px 10px 5px lightblue">
                     <div class="card h-100">
                         <img [src]="item.mainImg" class="card-img-top" alt="Produk 1">
@@ -69,4 +54,3 @@
             </div>
         </div>
     </div>
-</section>

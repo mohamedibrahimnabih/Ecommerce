@@ -1,0 +1,18 @@
+<section class="container py-5 my-5" id="products">
+
+  <div class="d-flex justify-content-center mb-4">
+        <div class="mb-3">
+            <select class="form-select form-select-lg" name="categoryId" [(ngModel)]="selectedId">
+                @for (item of categoies; track item.id) {
+                <option [value]="item.id">{{item.name | uppercase}}</option>
+                }
+            </select>
+
+            <div>SelectedCategoryId : {{selectedId}}</div>
+        </div>
+    </div>
+
+    <app-product [recivedSelectedId]="selectedId" (clacTotalPrice)="onTotalPriceChange($event)"></app-product>
+
+    <div class="display-6 mb-3">Total Price: {{totalPrice}}</div>
+</section>
