@@ -3,14 +3,13 @@ import { ProductResponse } from './models/product';
 import { Category } from './models/category';
 import { Navbar } from './navbar/navbar';
 import { Footer } from "./footer/footer";
-import { Product } from "./product/product";
-import { Home } from "./home/home";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [Navbar, Footer, Product, Home],
+  imports: [Navbar, Footer, RouterOutlet],
 })
 export class App {
 }

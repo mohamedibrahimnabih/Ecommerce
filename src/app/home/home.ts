@@ -4,6 +4,7 @@ import { Category } from '../models/category';
 import { UpperCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TotalPrice } from "../total-price/total-price";
+import { CategoryService } from '../services/category-service';
 
 @Component({
   selector: 'app-home',
@@ -19,25 +20,8 @@ export class Home {
 
   categoies: Category[];
 
-  constructor() {
-    this.categoies = [
-          {
-            id: 1,
-            name: 'Tablets'
-          },
-          {
-            id: 2,
-            name: 'PCs'
-          },
-          {
-            id: 3,
-            name: 'Computers'
-          },
-          {
-            id: 4,
-            name: 'Smart Phones'
-          }
-        ];
+  constructor(private categoryService: CategoryService) {
+    this.categoies = this.categoryService.GetAll();
   }
 
   onTotalPriceChange(event: number) {

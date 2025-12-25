@@ -3,14 +3,13 @@ import { ProductResponse } from '../models/product';
 import { Category } from '../models/category';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, NgClass, NgStyle } from '@angular/common';
-import { Highlight } from "../directives/highlight";
 import { BoxShadow } from '../directives/box-shadow';
 import { CapitalizePipe } from '../pipes/capitalize-pipe';
 import { ProductService } from '../services/product-service';
 
 @Component({
   selector: 'app-product',
-  imports: [FormsModule, NgClass, NgStyle, CommonModule, Highlight, BoxShadow, CapitalizePipe],
+  imports: [FormsModule, NgClass, NgStyle, CommonModule, BoxShadow, CapitalizePipe],
   templateUrl: './product.html',
   styleUrl: './product.css',
 })
