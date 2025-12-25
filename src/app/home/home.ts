@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Product } from "../product/product";
 import { Category } from '../models/category';
 import { UpperCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TotalPrice } from "../total-price/total-price";
 
 @Component({
   selector: 'app-home',
-  imports: [Product, UpperCasePipe, FormsModule],
+  imports: [Product, UpperCasePipe, FormsModule, TotalPrice],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -40,7 +41,11 @@ export class Home {
   }
 
   onTotalPriceChange(event: number) {
-    
+
     this.totalPrice += event;
   }
+
+  // @ViewChild('categorySelect') categorySelect!: ElementRef;
+
+  // @ViewChild(Product) productComponent!: ElementRef;
 }
