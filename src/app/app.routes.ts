@@ -7,8 +7,11 @@ import { Reister } from './reister/reister';
 import { Login } from './login/login';
 import { Information } from './information/information';
 import { Vision } from './vision/vision';
+import { ProdctDetail } from './prodct-detail/prodct-detail';
 
 export const routes: Routes = [
+  { path: '', component: Home },
+  
   { path: 'Privacy', component: Privacy },
   { path: 'AboutUs', component: AboutUs,
     children: [
@@ -30,6 +33,7 @@ export const routes: Routes = [
    },
   { path: 'Register', component: Reister },
   { path: 'Login', component: Login },
-  { path: '', component: Home },
-  { path: '**', component: PageNotFound }
+  { path: 'Product/:id', component: ProdctDetail },
+  
+  { path: '**', component: PageNotFound },
 ];

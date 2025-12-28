@@ -59,6 +59,14 @@ export class ProductService {
       return this.products.find(p => p.id === id);
     }
 
+    GetIndexById(id: number): number {
+      return this.products.findIndex(p => p.id === id);
+    }
+
+    GetIndexes(): number[] {
+      return this.products.map(p => p.id);
+    }
+
     Create(product: ProductResponse): void {
       this.products.push(product);
     }

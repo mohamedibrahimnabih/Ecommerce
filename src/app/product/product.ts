@@ -6,10 +6,11 @@ import { CommonModule, NgClass, NgStyle } from '@angular/common';
 import { BoxShadow } from '../directives/box-shadow';
 import { CapitalizePipe } from '../pipes/capitalize-pipe';
 import { ProductService } from '../services/product-service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-product',
-  imports: [FormsModule, NgClass, NgStyle, CommonModule, BoxShadow, CapitalizePipe],
+  imports: [FormsModule, NgClass, NgStyle, CommonModule, BoxShadow, CapitalizePipe, RouterLink],
   templateUrl: './product.html',
   styleUrl: './product.css',
 })
